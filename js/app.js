@@ -71,7 +71,7 @@ const displayNews = data => {
                             <path
                                 d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
                         </svg>
-                        <p class="card-text">${x.total_view}</p>
+                        <p class="card-text">${x.total_view ? x.total_view : 'No data'}</p>
                     </div>
                     <div class="d-flex">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
