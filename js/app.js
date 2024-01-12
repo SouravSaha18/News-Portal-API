@@ -55,7 +55,7 @@ const displayNews = data1 => {
                     <p class="card-text fs-6 pb-3">${first.slice(0, 150)}...</p>
                     <p class="card-text fs-6 pb-3">${first.slice(150, 250)}...</p>
                 </div>
-                <div class="d-flex justify-content-around">
+                <div class="d-block d-md-flex justify-content-md-around">
                     <div class="d-flex">
                         <div>
                             <img src="${x.author.img}" class="img-fluid  author-img rounded-circle" alt="">
