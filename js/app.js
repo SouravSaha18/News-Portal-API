@@ -15,6 +15,7 @@ const displayNav = data => {
 }
 
 const loadNews = (id, name) => {
+    toggleSpinner(true);
     document.getElementById('name-category').innerText = name;
     fetch(`https://openapi.programming-hero.com/api/news/category/0${id}`)
         .then(res => res.json())
@@ -22,7 +23,7 @@ const loadNews = (id, name) => {
 }
 
 const displayNews = data => {
-    console.log(data);
+    //console.log(data);
     document.getElementById('len-category').innerText = data.length;
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML = '';
@@ -48,10 +49,10 @@ const displayNews = data => {
                 <img src="${x.thumbnail_url}" class="img-fluid rounded m-3" alt="...">
             </div>
             <div class="col-12 col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold">${x.title}</h5>
-                    <p class="card-text">${first.slice(0, 200)}...</p>
-                    <p class="card-text">${first.slice(201, 300)}...</p>
+                <div class="card-body mt-3">
+                    <h5 class="card-title fw-bold pb-3">${x.title}</h5>
+                    <p class="card-text fs-6 pb-3">${first.slice(0, 150)}...</p>
+                    <p class="card-text fs-6 pb-3">${first.slice(150, 250)}...</p>
                 </div>
                 <div class="d-flex justify-content-around">
                     <div class="d-flex">
@@ -100,7 +101,7 @@ const displayNews = data => {
                         </svg>
                     </div>
                     <div>
-                        <button type="button" onclick="loadDetails()" class="btn btn-light"><svg
+                        <button type="button" onclick="loadDetails('${x._id}')" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#catDetailModal"><svg
                                 xmlns="http://www.w3.org/2000/svg" width="26" height="25" fill="currentColor"
                                 class="bi bi-arrow-right" viewBox="0 0 16 16" style="color: #2c2fd6;">
                                 <path fill-rule="evenodd"
@@ -113,6 +114,41 @@ const displayNews = data => {
         </div>`
         newsContainer.appendChild(div);
     });
+    toggleSpinner(false);
+}
+
+const toggleSpinner = isLoading => {
+    const loader = document.getElementById('loader');
+    if (isLoading) {
+        loader.classList.remove('d-none');
+    }
+    else {
+        loader.classList.add('d-none');
+    }
+}
+
+const loadDetails = id => {
+    //console.log(id);
+    fetch(`https://openapi.programming-hero.com/api/news/${id}`)
+        .then(res => res.json())
+        .then(data => displayDetails(data.data[0]));
+}
+
+const displayDetails = data => {
+    console.log(data);
+    const modalTitle = document.getElementById('catDetailModalLabel');
+    modalTitle.innerText = data.title;
+    const catDetails = document.getElementById('cat-details');
+    catDetails.innerHTML = `
+    <div class="row">
+    <div class="col-4">
+        <img src="${data.image_url}" alt="" class="img-fluid rounded m-3">
+     </div> <div>
+         <p>Author: ${data.author.name ? data.author.name : 'No name Found'}</p>
+         <p>published Date: ${data.author.published_date ? data.author.published_date : 'No Information'}</p>
+         <p>Rating: ${data.rating.number ? data.rating.number : 'No rating Information'}</p>
+         <p>Total view: ${data.total_view ? data.total_view : 'no view'}</p> </div></div>
+     `
 }
 
 loadNav();

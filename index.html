@@ -45,7 +45,7 @@
                     id="name-category"></span></p>
         </section>
         <!-- sort -->
-        <section class="d-flex justify-content-between mx-3 mt-4">
+        <section class="d-flex justify-content-between mx-md-3 mt-4">
             <div class="d-flex">
                 <h5 class="fw-semibold me-3">Sort By View:</h5>
                 <div class="dropdown">
@@ -66,9 +66,37 @@
             </div>
         </section>
         <!-- display -->
-        <section class="mt-4 mx-5">
+        <section class="mt-4 mx-md-5">
             <div id="news-container">
 
+            </div>
+        </section>
+        <!-- loder -->
+        <section id="loader" class="d-none">
+            <div style="height: 400px;" class="d-flex justify-content-center align-items-center">
+                <div class="spinner-border  text-success" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </section>
+        <!-- Modal -->
+        <section>
+            <div class="modal fade" id="catDetailModal" tabindex="-1" aria-labelledby="catDetailModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="catDetailModalLabel"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div id="cat-details" class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
