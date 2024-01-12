@@ -22,8 +22,9 @@ const loadNews = (id, name) => {
         .then(data => displayNews(data.data));
 }
 
-const displayNews = data => {
+const displayNews = data1 => {
     //console.log(data);
+    const data = [...data1].sort((a, b) => b.total_view - a.total_view);
     document.getElementById('len-category').innerText = data.length;
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML = '';
