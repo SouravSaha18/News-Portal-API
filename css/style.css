@@ -16,3 +16,7 @@ body {
 .foot {
     height: 125px;
 }
+
+.new {
+    border: 1px solid #a8a9d8;
+}

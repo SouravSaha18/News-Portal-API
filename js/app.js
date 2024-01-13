@@ -9,7 +9,8 @@ const displayNav = data => {
     data.forEach(cat => {
         const div = document.createElement('div');
         div.classList.add('col');
-        div.innerHTML = `<button onclick="loadNews(${cat.category_id}, '${cat.category_name}')" type="button" class="btn btn-sm btn-light">${cat.category_name}</button>`;
+        const [cat1] = cat.category_name.split(" ");
+        div.innerHTML = `<button onclick="loadNews(${cat.category_id}, '${cat.category_name}')" type="button" class="btn btn-sm btn-light new">${cat1}</button>`;
         navCategory.appendChild(div);
     });
 }
